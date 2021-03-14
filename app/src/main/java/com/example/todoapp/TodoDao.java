@@ -25,5 +25,5 @@ interface TodoDao {
     void delete(int id);
 
     @Update
-    void update(Task task)
+    void update(Task task);
 }
