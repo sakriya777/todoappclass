@@ -21,6 +21,7 @@ public abstract class AppDatabase extends RoomDatabase {
     static final ExecutorService databaseWriteExecutor =
             Executors.newFixedThreadPool(NUMBER_OF_THREADS);
 
+    public abstract TodoDao todoDao();
 
     static AppDatabase getDatabase(final Context context) {
         if (INSTANCE == null) {

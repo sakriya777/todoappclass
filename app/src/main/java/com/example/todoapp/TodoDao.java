@@ -18,11 +18,11 @@ interface TodoDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     public void insert(Task task);
 
-    @Delete
+    @Query("delete from tasks")
     void deleteAll();
 
-    @Query("delete from tasks where id = :id")
-    void delete(int id);
+    @Delete
+    void delete(Task task);
 
     @Update
     void update(Task task);
