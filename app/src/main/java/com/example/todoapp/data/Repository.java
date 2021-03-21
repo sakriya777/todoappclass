@@ -1,11 +1,6 @@
-package com.example.todoapp;
+package com.example.todoapp.data;
 
 import android.app.Application;
-import android.os.strictmode.InstanceCountViolation;
-
-import com.example.todoapp.data.AppDatabase;
-import com.example.todoapp.data.Task;
-import com.example.todoapp.data.TodoDao;
 
 import java.util.List;
 

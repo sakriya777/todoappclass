@@ -32,7 +32,8 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull TaskAdapter.ViewHolder holder, int position) {
-
+        Task task = data.get(position);
+        holder.bind(task);
     }
 
     @Override
@@ -40,7 +41,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
         if(data == null){
             return 0;
         }
-        return 0;
+        return data.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -49,6 +50,10 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
             super(inflater.inflate(R.layout.task_item, parent, false));
             title = itemView.findViewById(R.id.title_ti);
             description = itemView.findViewById(R.id.description_ti);
+        }
+        public void bind(Task task){
+            title.setText(task.getTitle());
+            description.setText(task.getDescription());
         }
     }
 }
