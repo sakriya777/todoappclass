@@ -1,5 +1,6 @@
 package com.example.todoapp.data;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
@@ -12,7 +13,7 @@ import java.util.List;
 public interface TodoDao {
 
     @Query("select * from tasks order by priority")
-    public List<Task> getAllTasks();
+    public LiveData<List<Task>> getAllTasks();
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     public void insert(Task task);

@@ -1,6 +1,9 @@
 package com.example.todoapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
@@ -16,21 +19,37 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = MainActivity.class.getSimpleName();
+
     private RecyclerView recyclerview;
     private TaskAdapter adapter;
-    Repository repository;
+
+//    Repository repository;
+
     private FloatingActionButton addButton;
+    private MainViewModel viewModel;
     List<Task> tasks;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        repository = Repository.getRepository(this.getApplication());
         recyclerview = findViewById(R.id.tasklist);
-        tasks = repository.getAllTasks();
-        adapter = new TaskAdapter(tasks);
-        recyclerview.setAdapter(adapter);
 
+//        repository = Repository.getRepository(this.getApplication());
+//        tasks = repository.getAllTasks();
+        adapter = new TaskAdapter();
+        viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
+         viewModel.getAllTasks().observe(this, new Observer<List<Task>>() {
+            @Override
+            public void onChanged(List<Task> tasks) {
+                if (tasks !=null) {
+                    adapter.setData(tasks);
+                }
+            }
+        });
+
+//
+        recyclerview.setAdapter(adapter);
 
         addButton = findViewById(R.id.add_btn);
         addButton.setOnClickListener(new View.OnClickListener() {
@@ -42,10 +61,10 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        tasks = repository.getAllTasks();
-        adapter.setData(tasks);
-    }
+//    @Override
+//    protected void onStart() {
+//        super.onStart();
+//        tasks = viewModel.getAllTasks();
+//        adapter.setData(tasks);
+//    }
 }

@@ -2,6 +2,8 @@ package com.example.todoapp.data;
 
 import android.app.Application;
 
+import androidx.lifecycle.LiveData;
+
 import java.util.List;
 
 public class Repository {
@@ -19,7 +21,7 @@ public class Repository {
         return INSTANCE;
     }
 
-    public List<Task> getAllTasks(){
+    public LiveData<List<Task>> getAllTasks(){
         return dao.getAllTasks();
     }
 
