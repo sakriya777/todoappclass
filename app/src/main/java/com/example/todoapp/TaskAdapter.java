@@ -21,6 +21,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
 
     public void  setData(List<Task> tasks){
             data = tasks;
+            notifyDataSetChanged();
     }
     @NonNull
     @Override

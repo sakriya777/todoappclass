@@ -20,13 +20,14 @@ public class MainActivity extends AppCompatActivity {
     private TaskAdapter adapter;
     Repository repository;
     private FloatingActionButton addButton;
+    List<Task> tasks;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         repository = Repository.getRepository(this.getApplication());
         recyclerview = findViewById(R.id.tasklist);
-        List<Task> tasks = repository.getAllTasks();
+        tasks = repository.getAllTasks();
         adapter = new TaskAdapter(tasks);
         recyclerview.setAdapter(adapter);
 
@@ -39,5 +40,12 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        tasks = repository.getAllTasks();
+        adapter.setData(tasks);
     }
 }
