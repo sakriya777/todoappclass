@@ -46,15 +46,19 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView title, description;
+        public TextView title, description, priority, createddate;
         public ViewHolder(LayoutInflater inflater, @NonNull ViewGroup parent) {
             super(inflater.inflate(R.layout.task_item, parent, false));
             title = itemView.findViewById(R.id.title_ti);
             description = itemView.findViewById(R.id.description_ti);
+            priority = itemView.findViewById(R.id.priority_ti);
+            createddate = itemView.findViewById(R.id.createddate_ti);
         }
         public void bind(Task task){
             title.setText(task.getTitle());
             description.setText(task.getDescription());
+            priority.setText(String.valueOf(task.getPriority()));
+            createddate.setText(task.getCreatedDate().toString());
         }
     }
 }
