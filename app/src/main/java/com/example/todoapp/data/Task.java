@@ -19,22 +19,26 @@ public class Task {
     private int priority;
     @ColumnInfo(name = "created_date")
     private Date createdDate;
+    @ColumnInfo(name = "completion_date")
+    private String completionDate;
 
 
-    public Task(String title, String description, int priority, Date createdDate) {
+    public Task(String title, String description, int priority, Date createdDate, String completionDate) {
         this.title = title;
         this.description = description;
         this.priority = priority;
         this.createdDate = createdDate;
+        this.completionDate = completionDate;
     }
 
     @Ignore
-    public Task(int id, String title, String description, int priority, Date createdDate) {
+    public Task(int id, String title, String description, int priority, Date createdDate, String completionDate) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.priority = priority;
         this.createdDate = createdDate;
+        this.completionDate = completionDate;
     }
 
     public int getId() {
@@ -75,5 +79,12 @@ public class Task {
 
     public void setCreatedDate(Date createdDate) {
         this.createdDate = createdDate;
+    }
+    public String getCompletionDate() {
+        return completionDate;
+    }
+
+    public void setCompletionDate(String completionDate) {
+        this.completionDate = completionDate;
     }
 }

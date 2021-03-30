@@ -47,7 +47,8 @@ public class AddTaskActivity extends AppCompatActivity implements DatePickerDial
             public void onClick(View v) {
                 String title = titleEditText.getText().toString();
                 String desc = descriptionEditText.getText().toString();
-                Task task = new Task(title, desc, priority, new Date());
+                String complDate = date;
+                Task task = new Task(title, desc, priority, new Date(), complDate);
                 repository.insert(task);
                 finish();
             }
@@ -80,6 +81,7 @@ public class AddTaskActivity extends AppCompatActivity implements DatePickerDial
         DatePickerDialog datePickerDialog = new DatePickerDialog(
                 this,
                 this,
+
                 Calendar.getInstance().get(Calendar.YEAR),
                 Calendar.getInstance().get(Calendar.MONTH),
                 Calendar.getInstance().get(Calendar.DAY_OF_MONTH)
@@ -89,7 +91,7 @@ public class AddTaskActivity extends AppCompatActivity implements DatePickerDial
 
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-        date = month +"/"+ dayOfMonth + "/" + year;
+        date = month+1 +"/"+ dayOfMonth + "/" + year;
         dateselector.setText(date);
     }
 }
