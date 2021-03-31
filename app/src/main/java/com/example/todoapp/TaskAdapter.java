@@ -74,7 +74,6 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
         public void bind(Task task){
             title.setText(task.getTitle());
             description.setText(task.getDescription());
-            card.getBackground().setAlpha(50);
             if (task.getPriority() == 3){
                 card.setCardBackgroundColor(Color.RED);
             }
@@ -84,7 +83,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
             else if (task.getPriority() == 1){
                 card.setCardBackgroundColor(Color.GREEN);
             }
-            priority.setText(String.valueOf(task.getPriority()));
+            priority.setText("Priority: "+String.valueOf(task.getPriority()));
             createddate.setText("Created On:"+task.getCreatedDate().toString());
             dateDifference = (int) getDateDiff(new SimpleDateFormat("dd/MM/yyyy"), date1, task.getCompletionDate().toString() );
             completiondate.setText("Completion Date: "+task.getCompletionDate().toString());
