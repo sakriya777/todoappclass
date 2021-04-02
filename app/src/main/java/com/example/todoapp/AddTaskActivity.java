@@ -91,7 +91,7 @@ public class AddTaskActivity extends AppCompatActivity implements DatePickerDial
 
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-        date = month+1 +"/"+ dayOfMonth + "/" + year;
+        date = dayOfMonth+"/"+(month+1)+"/"+year;
         dateselector.setText(date);
     }
 }

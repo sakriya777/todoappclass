@@ -16,7 +16,8 @@ import java.util.concurrent.Executors;
 
 @Database(entities = {Task.class}, version = 1, exportSchema = false)
 @TypeConverters(DateConverter.class)
-public abstract class AppDatabase extends RoomDatabase {
+public abstract class
+AppDatabase extends RoomDatabase {
 
 
     private static AppDatabase INSTANCE;
@@ -54,11 +55,17 @@ public abstract class AppDatabase extends RoomDatabase {
                 public void run() {
                     dao.deleteAll();
 
-                    Task task = new Task("title", "description", 1, new Date(), "30/4/2021");
+                    Task task = new Task("Finish DMA Assignment", "Has to be completed by 1st April", 3, new Date(), "1/4/2021");
                     dao.insert(task);
 
-                    Task task2 = new Task("title2", "description2", 2, new Date(), "3/4/2021");
+                    Task task2 = new Task("Finish DS Assignment", "Has to be completed by 5th April", 2, new Date(), "1/4/2021");
                     dao.insert(task2);
+
+                    Task task3 = new Task("Finish PP Assignment", "Has to be completed by 10th April", 2, new Date(), "10/4/2021");
+                    dao.insert(task3);
+
+                    Task task4 = new Task("Finish DBA Assignment", "Has to be completed by 15th April", 2, new Date(), "15/4/2021");
+                    dao.insert(task4);
                 }
             });
 

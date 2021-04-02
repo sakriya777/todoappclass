@@ -10,7 +10,7 @@ public class Repository {
     static Repository INSTANCE;
     AppDatabase db;
     TodoDao dao;
-    private Repository(Application application){
+    public Repository(Application application){
         db = AppDatabase.getDatabase(application);
         dao = db.todoDao();
     }
@@ -30,6 +30,15 @@ public class Repository {
             @Override
             public void run() {
                 dao.deleteAll();
+            }
+        });
+    }
+
+    public void delete(Task task){
+        AppDatabase.databaseWriteExecutor.execute(new Runnable() {
+            @Override
+            public void run() {
+                dao.delete(task);
             }
         });
     }

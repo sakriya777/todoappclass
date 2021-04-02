@@ -21,9 +21,12 @@ public interface TodoDao {
     @Query("delete from tasks")
     void deleteAll();
 
+    @Update
+    void update(Task task);
+
     @Delete
     void delete(Task task);
 
-    @Update
-    void update(Task task);
+    @Query("SELECT * FROM tasks WHERE id =:ID ")
+    List<Task> getAllTaskbyID(int ID);
 }
